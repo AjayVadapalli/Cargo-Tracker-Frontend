@@ -9,7 +9,7 @@ export const fetchShipments = createAsyncThunk(
   'shipments/fetchAll',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${API_URL}/shipments`);
+      const response = await axios.get(`${API_URL}/api/shipments`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -21,7 +21,7 @@ export const fetchShipmentById = createAsyncThunk(
   'shipments/fetchById',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${API_URL}/shipment/${id}`);
+      const response = await axios.get(`${API_URL}/api/shipment/${id}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -33,7 +33,7 @@ export const createShipment = createAsyncThunk(
   'shipments/create',
   async (shipmentData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}/shipment`, shipmentData);
+      const response = await axios.post(`${API_URL}/api/shipment`, shipmentData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -45,7 +45,7 @@ export const updateShipment = createAsyncThunk(
   'shipments/update',
   async ({ id, ...shipmentData }, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`${API_URL}/shipment/${id}`, shipmentData);
+      const response = await axios.put(`${API_URL}/api/shipment/${id}`, shipmentData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -57,7 +57,7 @@ export const updateShipmentLocation = createAsyncThunk(
   'shipments/updateLocation',
   async ({ id, locationData }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}/shipment/${id}/update-location`, locationData);
+      const response = await axios.post(`${API_URL}/api/shipment/${id}/update-location`, locationData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -69,7 +69,7 @@ export const fetchShipmentETA = createAsyncThunk(
   'shipments/fetchETA',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${API_URL}/shipment/${id}/eta`);
+      const response = await axios.get(`${API_URL}/api/shipment/${id}/eta`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -81,7 +81,7 @@ export const deleteShipment = createAsyncThunk(
   'shipments/delete',
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`${API_URL}/shipment/${id}`);
+      await axios.delete(`${API_URL}/api/shipment/${id}`);
       return id;
     } catch (error) {
       return rejectWithValue(error.response.data);
