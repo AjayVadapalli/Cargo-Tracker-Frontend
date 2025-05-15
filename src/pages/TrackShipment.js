@@ -21,7 +21,7 @@ const TrackShipment = () => {
     try {
       // First try to find by container number
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL || 'http://localhost:5000/api'}/shipment/by-container/${trackingId}`
+        `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/shipment/by-container/${trackingId}`
       );
       setShipment(response.data);
     } catch (err) {
@@ -29,7 +29,7 @@ const TrackShipment = () => {
       if (err.response?.status === 404 && isValidObjectId(trackingId)) {
         try {
           const response = await axios.get(
-            `${process.env.REACT_APP_API_URL || 'http://localhost:5000/api'}/shipment/${trackingId}`
+            `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/shipment/${trackingId}`
           );
           setShipment(response.data);
         } catch (idErr) {
@@ -49,7 +49,7 @@ const TrackShipment = () => {
     if (shipment && shipment.status === 'In Transit') {
       interval = setInterval(async () => {
         try {
-          const response = await axios.get(`${process.env.REACT_APP_API_URL || 'http://localhost:5000/api'}/shipment/${shipment._id}`);
+          const response = await axios.get(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/shipment/${shipment._id}`);
           setShipment(response.data);
         } catch (err) {
           console.error('Failed to refresh shipment data:', err);
